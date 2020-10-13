@@ -1,0 +1,30 @@
+{
+  "variables": {
+    "project_id": ""
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "{{user `project_id`}}",
+      "source_image_family": "ubuntu-minimal-2004-lts",
+      "zone": "europe-west1-b",
+      "ssh_username" : "root",  
+      "image_name": "puppet-demo",
+      "image_labels": {
+        "created": "{{ timestamp }}"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "destination": "/tmp/resources",
+      "source": "resources",
+      "type": "file"
+    },
+    {
+      "type": "shell",
+      "script": "bootstrap.sh"
+    }
+  ]
+
+}

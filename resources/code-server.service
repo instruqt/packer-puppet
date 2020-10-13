@@ -1,0 +1,11 @@
+[Unit]
+Description=code-server
+After=k3s.service
+
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/code-server --host 0.0.0.0 --port 8080 --auth none /root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
