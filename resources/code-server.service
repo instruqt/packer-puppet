@@ -4,7 +4,7 @@ After=k3s.service
 
 [Service]
 WorkingDirectory=/root
-ExecStart=/usr/bin/code-server --host 0.0.0.0 --port 8080 --auth none /root
+ExecStart=/usr/bin/code-server --host 0.0.0.0 --port 8080 --auth none /etc/puppetlabs/code/environments/production/manifests
 Restart=always
 
 [Install]

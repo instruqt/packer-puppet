@@ -8,6 +8,14 @@ echo "waiting 180 seconds for cloud-init to update /etc/apt/sources.list"
 timeout 180 /bin/bash -c \
   'until stat /var/lib/cloud/instance/boot-finished 2>/dev/null; do echo waiting ...; sleep 1; done'
 
+wget https://apt.puppetlabs.com/puppet-release-bionic.deb
+dpkg -i puppet-release-bionic.deb
+rm -rf puppet-release-bionic.deb
+
+wget https://apt.puppet.com/puppet-tools-release-bionic.deb
+dpkg -i puppet-tools-release-bionic.deb
+rm -rf puppet-tools-release-bionic.deb
+
 apt-get update && apt-get -y upgrade
 apt-get -y install \
     curl \
@@ -21,37 +29,19 @@ apt-get -y install \
     openjdk-8-jdk \
     vim \
     bash-completion \
-    jq
+    jq \
+    puppetserver \
+    puppet-agent \
+    puppet-bolt \
+    ntp
 
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
+service ntp restart
 
-sudo usermod -aG docker root
-
-# Install Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-mkdir -p /opt/docker-compose
-cp -a /tmp/resources/compose/* /opt/docker-compose
-
-# cp -a /tmp/resources/*.sh /usr/bin
 cp -a /tmp/resources/*.service /lib/systemd/system/
 systemctl daemon-reload
 
-systemctl enable docker code-server
-systemctl start docker code-server
-
-cp -a /tmp/resources/bin/* /usr/local/bin
-
-for i in $(find /opt/docker-compose -mindepth 1 -maxdepth 1 -type d); do
-  pushd "$i"
-  docker-compose pull
-  popd
-
-  svc=$(basename "$i")
-  systemctl enable docker-compose@$svc
-done
+systemctl enable code-server
+systemctl start code-server
 
 curl -fsSL https://code-server.dev/install.sh | sh -s -- --prefix /usr/bin
 

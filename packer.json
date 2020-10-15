@@ -6,7 +6,7 @@
     {
       "type": "googlecompute",
       "project_id": "{{user `project_id`}}",
-      "source_image_family": "ubuntu-minimal-2004-lts",
+      "source_image_family": "ubuntu-minimal-1804-lts",
       "zone": "europe-west1-b",
       "ssh_username" : "root",  
       "image_name": "puppet-demo",

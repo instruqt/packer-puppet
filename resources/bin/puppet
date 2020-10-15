@@ -1,5 +1,0 @@
-#! /bin/sh
-
-cd "$(dirname "$0")/.." || exit 1
-
-docker exec puppet_puppet_1 puppet "$@"
