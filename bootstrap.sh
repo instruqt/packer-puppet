@@ -55,14 +55,39 @@ EOF
 
 cat >/root/.local/share/code-server/User/settings.json <<EOF
 {
-    "workbench.colorTheme": "Visual Studio Dark",
-    "editor.formatOnSave": true,
-    "editor.fontSize": 14,
-    "editor.tabSize": 2,
-    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.statusBar.visible": false,
+    "workbench.tips.enabled": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "update.showReleaseNotes": false,
+    "telemetry.enableTelemetry": false,
     "window.menuBarVisibility": "hidden",
-    "workbench.startupEditor": "none",
+    "workbench.activityBar.visible": false,
+    "breadcrumbs.enabled": false,
+    "breadcrumbs.filePath": "off",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.editor.showTabs": false,
+    "files.enableTrash": false,
+    "files.autoSave": "afterDelay",
+    "workbench.enableExperiments": false,
+    "editor.formatOnSave": true,
+    "editor.codeLens": false,
+    "editor.colorDecorators": false,
+    "editor.dragAndDrop": false,
+    "editor.smoothScrolling": true,
     "editor.minimap.enabled": false,
+    "editor.fontSize": 14,
     "terminal.integrated.shell.linux": "/bin/bash"
+    "workbench.colorCustomizations": {
+        "sideBar.background": "#252F42",
+        "sideBar.foreground": "#fff",
+        "editor.background": "#1C2639",
+        "list.activeSelectionBackground": "#344156",
+        "list.focusBackground": "#344156",
+        "list.hoverBackground": "#13171e",
+        "list.inactiveSelectionBackground": "#344156"
+    }
 }
 EOF
