@@ -1,1 +1,1 @@
-# Packer recipe for Docker image
+# Packer recipe for Puppet image
